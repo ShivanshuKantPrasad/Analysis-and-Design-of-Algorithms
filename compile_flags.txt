@@ -1,0 +1,2 @@
+-I/nix/store/xb4isvlvcvkrn9ljznndrhqnkqq3r33h-criterion-2.4.1-dev/include
+-lcriterion
