@@ -1,3 +1,4 @@
+#include "bubbleSort.c"
 #include "insertionSort.c"
 #include "selectionSort.c"
 #include <criterion/criterion.h>
@@ -44,4 +45,9 @@ Test(sort, insertion) {
 Test(sort, selection) {
   selection(arr, length);
   cr_expect(sorted(arr, length), "Selection sort not working");
+}
+
+Test(sort, bubble) {
+  bubble(arr, length);
+  cr_expect(sorted(arr, length), "Bubble sort not working");
 }
