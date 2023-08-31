@@ -7,7 +7,7 @@ LDLIBS = `pkg-config --libs criterion`
 $(OBJ_DIR)/%: %.c
 	@mkdir -p $(dir $@)
 	$(CC) $< -o $@ $(CFLAGS) $(LDLIBS)
-	$@
+	$@ --verbose
 
 Sort: build/Sort/sort
 

@@ -1,4 +1,5 @@
 #include "insertionSort.c"
+#include "selectionSort.c"
 #include <criterion/criterion.h>
 #include <stdio.h>
 
@@ -23,9 +24,24 @@ int *generate_arr(int length) {
   return arr;
 }
 
-Test(sample, test) {
-  int length = rand() % 100 + 1;
-  int *arr = generate_arr(length);
+int length;
+int *arr;
+
+void setup() {
+  length = rand() % 100 + 1;
+  arr = generate_arr(length);
+}
+
+void teardown() { free(arr); }
+
+TestSuite(sort, .init = setup, .fini = teardown);
+
+Test(sort, insertion) {
   insertion(arr, length);
   cr_expect(sorted(arr, length), "Insertion sort not working");
+}
+
+Test(sort, selection) {
+  selection(arr, length);
+  cr_expect(sorted(arr, length), "Selection sort not working");
 }
