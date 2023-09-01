@@ -1,8 +1,12 @@
 #include "bubbleSort.c"
 #include "insertionSort.c"
+#include "mergesort.c"
 #include "selectionSort.c"
 #include <criterion/criterion.h>
 #include <stdio.h>
+
+#define MAX_LENGTH 10000;
+#define MAX_VALUE 10000000;
 
 bool sorted(int *arr, int length) {
   for (int i = 0; i < length - 1; i++) {
@@ -20,7 +24,7 @@ void print_arr(int *arr, int length) {
 int *generate_arr(int length) {
   int *arr = malloc(sizeof(int) * length);
   for (int i = 0; i < length; i++) {
-    arr[i] = rand();
+    arr[i] = rand() % MAX_VALUE;
   }
   return arr;
 }
@@ -29,7 +33,8 @@ int length;
 int *arr;
 
 void setup() {
-  length = rand() % 100 + 1;
+  length = rand() % MAX_LENGTH;
+  length += 1; // Why can't I add +1 in the previous line? Weird!!!!
   arr = generate_arr(length);
 }
 
@@ -50,4 +55,9 @@ Test(sort, selection) {
 Test(sort, bubble) {
   bubble(arr, length);
   cr_expect(sorted(arr, length), "Bubble sort not working");
+}
+
+Test(sort, mergesort) {
+  mergesort(arr, arr + length - 1);
+  cr_expect(sorted(arr, length), "Merge sort not working");
 }
