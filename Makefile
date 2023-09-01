@@ -9,7 +9,5 @@ $(OBJ_DIR)/%: %.c
 	$(CC) $< -o $@ $(CFLAGS) $(LDLIBS)
 	$@ --verbose
 
-Sort: build/Sort/sort
-
 clean:
 	rm -rf build/*

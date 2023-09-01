@@ -1,3 +1,5 @@
+#include "sort.h"
+
 void bubble(int *arr, int length) {
   for (int i = 0; i < length - 1; i++) {
     for (int j = 0; j < length - i - 1; j++) {
@@ -8,4 +10,9 @@ void bubble(int *arr, int length) {
       }
     }
   }
+}
+
+Test(sort, bubble) {
+  bubble(arr, length);
+  cr_expect(sorted(arr, length), "Bubble sort not working");
 }

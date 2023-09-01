@@ -1,3 +1,4 @@
+#include "sort.h"
 #include <stdlib.h>
 
 void mergesort(int *start, int *end) {
@@ -39,4 +40,9 @@ void mergesort(int *start, int *end) {
     i++;
   }
   free(copy);
+}
+
+Test(sort, mergesort) {
+  mergesort(arr, arr + length - 1);
+  cr_expect(sorted(arr, length), "Merge sort not working");
 }

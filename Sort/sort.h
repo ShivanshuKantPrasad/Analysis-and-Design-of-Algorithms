@@ -1,12 +1,10 @@
-#include "bubbleSort.c"
-#include "insertionSort.c"
-#include "mergesort.c"
-#include "selectionSort.c"
+#pragma once
+
 #include <criterion/criterion.h>
 #include <stdio.h>
 
 #define MAX_LENGTH 10000;
-#define MAX_VALUE 10000000;
+#define MAX_VALUE 100000000;
 
 bool sorted(int *arr, int length) {
   for (int i = 0; i < length - 1; i++) {
@@ -19,6 +17,7 @@ bool sorted(int *arr, int length) {
 void print_arr(int *arr, int length) {
   for (int *i = arr; i < (arr + length); i++)
     printf("%d, ", *i);
+  printf("\n");
 }
 
 int *generate_arr(int length) {
@@ -41,23 +40,3 @@ void setup() {
 void teardown() { free(arr); }
 
 TestSuite(sort, .init = setup, .fini = teardown);
-
-Test(sort, insertion) {
-  insertion(arr, length);
-  cr_expect(sorted(arr, length), "Insertion sort not working");
-}
-
-Test(sort, selection) {
-  selection(arr, length);
-  cr_expect(sorted(arr, length), "Selection sort not working");
-}
-
-Test(sort, bubble) {
-  bubble(arr, length);
-  cr_expect(sorted(arr, length), "Bubble sort not working");
-}
-
-Test(sort, mergesort) {
-  mergesort(arr, arr + length - 1);
-  cr_expect(sorted(arr, length), "Merge sort not working");
-}

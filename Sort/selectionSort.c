@@ -1,3 +1,5 @@
+#include "sort.h"
+
 void selection(int *arr, int length) {
   int i = 0, j = 0;
   for (int i = 0; i < length - 1; i++) {
@@ -13,4 +15,9 @@ void selection(int *arr, int length) {
       arr[jMin] = arr[i];
     }
   }
+}
+
+Test(sort, selection) {
+  selection(arr, length);
+  cr_expect(sorted(arr, length), "Selection sort not working");
 }

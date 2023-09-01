@@ -1,3 +1,5 @@
+#include "sort.h"
+
 void insertion(int *arr, int length) {
   for (int *i = arr + 1; i < arr + length; i++) {
     int key = *i;
@@ -7,4 +9,9 @@ void insertion(int *arr, int length) {
     }
     *(j + 1) = key;
   }
+}
+
+Test(sort, insertion) {
+  insertion(arr, length);
+  cr_expect(sorted(arr, length), "Insertion sort not working");
 }
